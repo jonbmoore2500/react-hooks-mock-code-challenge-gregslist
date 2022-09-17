@@ -5,6 +5,7 @@ import ListingsContainer from "./ListingsContainer";
 function App() {
 
   const [items, setItems] = useState([])
+  
 
   useEffect(() => {
     fetch('http://localhost:6001/listings')
