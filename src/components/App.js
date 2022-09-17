@@ -13,11 +13,21 @@ function App() {
     .then(data => setItems(data))
   }, [])
 
+  function handleDelete(deleteID) {
+    fetch(`http://localhost:6001/listings/${deleteID}`, {
+    method: "DELETE"
+    })
+    .then(r => r.json())
+    .then(() => {
+      const newItems = items.filter((item) => item.id !== deleteID)
+      setItems(newItems)
+    })
+  }
 
   return (
     <div className="app">
       <Header />
-      <ListingsContainer items={items}/>
+      <ListingsContainer items={items} handleDelete={handleDelete}/>
     </div>
   );
 }
